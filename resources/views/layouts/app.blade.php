@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{'Think Big Books'}}</title>
 
     <!-- Scripts -->
     <link href="{{ asset('/js/app.js') }}" rel="stylesheet">

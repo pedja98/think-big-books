@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('book_name');
             $table->string('author');
             $table->string('publisher');
-            $table->string('publishing_date');
+            $table->date('publishing_date');
             $table->timestamps();
         });
     }

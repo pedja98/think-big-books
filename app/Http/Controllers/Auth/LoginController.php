@@ -28,7 +28,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        if (Auth()->user()->role == 'admin') {
+            return route('admin.dashboard');
+        } else {
+            return route('member.dashboard');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -38,5 +45,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        $input = $request->all();
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+
+            if (auth()->user()->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif (auth()->user()->role == 'member') {
+                return redirect()->route('member.dashboard');
+            }
+        } else {
+            return redirect()->route('login')->with('error', 'Email and password are wrong');
+        }
     }
 }

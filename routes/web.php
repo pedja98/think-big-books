@@ -4,6 +4,9 @@ use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MemberController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,14 +18,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::view('/', 'auth.login');
 
-Route::post('/books', [BookController::class, 'store']);
+Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
+    Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
+    Route::post('/books', [BookController::class, 'store']);
+});
+
+Route::group(['prefix'=>'member', 'middleware'=>['isMember','auth']], function(){
+    Route::get('dashboard',[MemberController::class,'index'])->name('member.dashboard');
+});

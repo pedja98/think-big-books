@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         @if (Auth::user()->role == 'member')
-        <div class="col-md-8">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">{{ __('Member Dashboard') }}</div>
 

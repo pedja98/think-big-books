@@ -13,10 +13,14 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <p>Member is logged in</p>
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+        @foreach($books as $book)
+        <p><b>{{$book->book_name}}</b> {{$book->author}}</p>
+        @endforeach
     </div>
 </div>
 @endsection

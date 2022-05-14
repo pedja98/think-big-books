@@ -28,12 +28,13 @@ class LoginController extends Controller
      *
      * @var string
      */
+
     protected function redirectTo()
     {
         if (Auth()->user()->role == 'admin') {
-            return route('admin.dashboard');
+            return route('admin.index');
         } else {
-            return route('member.dashboard');
+            return route('member.index');
         }
     }
 
@@ -58,12 +59,18 @@ class LoginController extends Controller
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
 
             if (auth()->user()->role == 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.index');
             } elseif (auth()->user()->role == 'member') {
-                return redirect()->route('member.dashboard');
+                return redirect()->route('member.index');
             }
         } else {
             return redirect()->route('login')->with('error', 'Email and password are wrong');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect("/login");
     }
 }

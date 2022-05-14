@@ -32,9 +32,9 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         if (Auth()->user()->role == 'admin') {
-            return route('admin.dashboard');
+            return route('admin.index');
         } else {
-            return route('member.dashboard');
+            return route('member.index');
         }
     }
 

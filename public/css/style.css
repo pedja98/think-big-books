@@ -1,0 +1,32 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    height: 100%;
+}
+
+main {
+    height: 75%;
+}
+
+nav {
+    height: 15%;
+}
+
+footer {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    position: absolut;
+    top: 0;
+}
+
+.p {
+    background-color: aqua;
+}

@@ -24,9 +24,10 @@ Route::view('/', 'auth.login');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
     Route::get('index',[AdminController::class,'index'])->name('admin.index');
-    Route::post('/books', [BookController::class, 'store']);
+    Route::post('books', [BookController::class, 'store']);
 });
 
 Route::group(['prefix'=>'member', 'middleware'=>['isMember','auth']], function(){
     Route::get('index',[MemberController::class,'index'])->name('member.index');
+    Route::get('books', [BookController::class, 'getBooks']);
 });

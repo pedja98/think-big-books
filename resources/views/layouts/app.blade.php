@@ -33,9 +33,16 @@
     <div id="app" class="">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Think Big Books
-                </a>
+                @if(Auth::user() == null)
+                    <a class="navbar-brand" href="{{ url('/') }}"> Think Big Books </a>
+                @else
+                    @if(Auth::user()->role == 'admin')
+                        <a class="navbar-brand" href="{{ url('admin/index') }}"> Think Big Books </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('member/index') }}"> Think Big Books </a>
+                    @endif
+                @endif
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

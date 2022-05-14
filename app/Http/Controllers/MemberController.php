@@ -9,6 +9,7 @@ class MemberController extends Controller
 {
     public function index() {
         $books = Book::orderBy('book_name')->get();
-        return view('users.members.index', ['books' => $books]);
+        session(['books' => $books]);
+        return view('users.members.index');
     }
 }

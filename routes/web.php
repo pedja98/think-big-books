@@ -20,7 +20,9 @@ use App\Http\Controllers\MemberController;
 
 Auth::routes();
 
-Route::view('/', 'auth.login');
+Route::get('/', function() {
+    return redirect("/login");
+});
 
 Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
     Route::get('index',[AdminController::class,'index'])->name('admin.index');

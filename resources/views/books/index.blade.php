@@ -14,7 +14,7 @@
                     </div>
                     @endif
 
-                    <form action="books" method="GET">
+                    <form action="" method="GET">
                         <label for="book_name">Book name</label>
                         <input type="text" autocomplete="off" name="book_name" id="book_name">
 
@@ -36,12 +36,16 @@
     <div class="container">
         <div class="card-columns">
             @foreach(session('books') as $book)
-            <div class="card" style="height: 350px;">
+            @php
+                $route = (Auth::user()->role == 'admin'? 'admin' : 'member') . '/books/'.$book->id.'/';
+            @endphp
+            
+            <a class="card book-link" href="{{ url($route) }}" >
                 <img class="card-img-top" src="{{ asset('img/book.png') }}" alt="book image">
                 <div class="card-body">
                     <p class="card-text"><b>{{$book->book_name}}</b></p>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>

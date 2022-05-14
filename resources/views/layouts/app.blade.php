@@ -22,10 +22,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('/css/app.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 
 </head>
 
@@ -34,13 +34,13 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 @if(Auth::user() == null)
-                    <a class="navbar-brand" href="{{ url('/') }}"> Think Big Books </a>
+                <a class="navbar-brand" href="{{ url('/') }}"> Think Big Books </a>
                 @else
-                    @if(Auth::user()->role == 'admin')
-                        <a class="navbar-brand" href="{{ url('admin/index') }}"> Think Big Books </a>
-                    @else
-                        <a class="navbar-brand" href="{{ url('member/index') }}"> Think Big Books </a>
-                    @endif
+                @if(Auth::user()->role == 'admin')
+                <a class="navbar-brand" href="{{ url('admin/index') }}"> Think Big Books </a>
+                @else
+                <a class="navbar-brand" href="{{ url('/member/books/index') }}"> Think Big Books </a>
+                @endif
                 @endif
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -75,14 +75,18 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                @if(Auth::user()->role == 'admin')
+                                <a class="dropdown-item" href="{{ route('admin.index') }}">Import Data</a>
+                                <a class="dropdown-item" href="{{ route('admin.books') }}">Books</a>
+                                @endif
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
                             </div>
                         </div>
                         @endguest

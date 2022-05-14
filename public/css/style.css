@@ -9,24 +9,16 @@ html, body {
     height: 100%;
 }
 
-main {
-    height: 75%;
-}
-
 nav {
-    height: 15%;
+    height: 10vh;
 }
 
-footer {
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.book-link {
     color: black;
-    position: absolut;
-    top: 0;
+    height: 350px;
 }
 
-.p {
-    background-color: aqua;
+.book-link:hover {
+    color: black;
+    text-decoration: none;
 }

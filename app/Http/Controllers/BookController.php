@@ -9,6 +9,36 @@ use Illuminate\Support\Facades\URL;
 
 class BookController extends Controller
 {
+    public function index()
+    {
+        $book_name = request('book_name');
+        $publishing_year = request('publishing_year');
+
+        $books = null;
+        if ($book_name == null && $publishing_year == null) {
+            $books = Book::orderBy('book_name')->get();
+        } else {
+            if ($publishing_year == "") {
+                $books = Book::where("book_name", 'like', '%' . $book_name . '%')
+                    ->orderBy('book_name')
+                    ->get();
+            } else {
+                $books = Book::where("book_name", 'like', '%' . $book_name . '%')
+                    ->whereRaw("TIMESTAMPDIFF(YEAR, publishing_date, NOW())" . $publishing_year)
+                    ->orderBy('book_name')
+                    ->get();
+            }
+        }
+
+        session(['books' => $books]);
+        return view('books.index');
+    }
+
+    public function show($book) {
+        $book = Book::findOrFail($book);
+        return view('books.details', ['book' => $book]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -29,29 +59,5 @@ class BookController extends Controller
         }
 
         return redirect()->back()->with('success', 'Data imported successfully');
-    }
-
-    public function getBooks()
-    {
-        $book_name = request('book_name');
-        $publishing_year = request('publishing_year');
-
-        //error_log(strpos(URL::current(), 'member') == true);
-
-        $books = null;
-
-        if ($publishing_year == "") {
-            $books = Book::where("book_name", 'like', '%' . $book_name . '%')
-                ->orderBy('book_name')
-                ->get();
-        } else {
-            $books = Book::where("book_name", 'like', '%' . $book_name . '%')
-                ->whereRaw("YEAR(NOW()) - YEAR(publishing_date)". $publishing_year)
-                ->orderBy('book_name')
-                ->get();
-        }
-
-        session(['books' => $books]);
-        return view('users.members.index');
     }
 }

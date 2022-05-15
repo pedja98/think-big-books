@@ -1,64 +1,25 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p>Uputstvo za koriscenje aplikacije</p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<p>Opis funkcionalnosti</p>
+
+<p>U aplikaciji postoji sistem za login korisnika kao i njihovu registraciju. Pri registraciji pored osnovnih podataka(Ime, Mail, Sifra), korisnik 
+moze odabrati i role Admin-a i Member-a koji imaju mogucnost pregleda knjiga, ali samo Admin moze da ih dodaje. Po registraciji korisnik se automatski loginuje.<br>
+Da bi se login-ovao korisnik mora da tacno potvrdi svoj mail i sifru, nakon cega se redirektuje na korisnicke stranice kojima nije moguce pristupiti ako odgovarajucitip korisnika nije login-ovan.<br>
+Na admin-ovoj indeksnoj stranici nalazi se forma za importovanje podataka, gde se pomocu dugmeta "choose file" bira datoteka ciji se podaci ucitavaju (datoteka mora biti .csv, .xml i sl. tipova, u suprotnom prijavljuje se greska pri import-ovanju).
+<br> Potom se pomocu dugmeta "import" podaci dodaju u bazu. Nakon cega dobijamo povrstnu poruku o uspesnom dodavanju podataka u bazu odnosno gresku ako smo odabrali pogresan tip fajla, odnosno dodavanje nije uspelo.
+<br> Na member-ovoj pocetnoj stranici nalazi se pregled svih ucitanih knjiga sortiranih po imenu. Da bi se pristupilo nekoj dodatnoj informaciji o samoj knjizi dovoljno je kliknuti na kartizu sa odabranom knjigom, nakon cega se prelazi na novu stranicu.
+<br> Na novoj stranici se nalaze informacije o knjizi (ime, autor/i, izdavac i godina izdanja). Na glavnoj stranici za pregled knjiga takodje se nalazi i forma za pretragu.
+<br> Forma se sastoji od tekstualnog polja za unos imena trazene knjige, padajuce liste sa podacima o odabiru god izdanja (do 5 godina, do 10 godina, starije od 10 godina kao i nista od ponudjenog).
+<br> Korisnik pretragu moze vrsiti na sledece nacine.
+	
+	<ul>
+		<li>Samo po imenu knjige, pri cemu se u polje za naziv knjige doda trazeni tekst, a padajuca lista je postavljena na "none"</li>
+		<li>Samo po godini izdanja, pri cemu je polje sa imenom prazno, a iz padajuce liste se bira jedna od gorenavedenih kategorija</li>
+		<li>kombinovano, pri cemu se u polje za naziv knjige doda trazeni tekst, a iz padajuce liste se bira jedna od gorenavedenih kategorija</li>
+	</ul>
+	
+<br> U slucaju pokusaj pretrage sa ne odabranom kategorijom iz liste odn praznim tekstualnim poljem za naziv povratni rezultat su sve knjige. Iste mogucnosti na svojoj stranici za pristup knjiga ima i admin.
+<br> Na korisnickim stranicama u padajucoj listi navigacionog bara pored opcije logout, nalze se i polja za redirekciju na druge komponente.
+<br> U slucaju admin-a to su polja "import data" i "books" koje respektivno vrse redirekciju na polje sa "import data" odnosno stranice za pregled knjiga,
+odnosno samo "books" u slucaju membera.
 </p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

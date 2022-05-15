@@ -80,6 +80,10 @@
                                 <a class="dropdown-item" href="{{ route('admin.books') }}">Books</a>
                                 @endif
 
+                                @if(Auth::user()->role == 'member')
+                                <a class="dropdown-item" href="{{ route('member.index') }}">Books</a>
+                                @endif
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

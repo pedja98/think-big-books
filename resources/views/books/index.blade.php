@@ -34,13 +34,14 @@
         </div>
     </div>
     <div class="container">
+        @if(!session('books')->isEmpty())
         <div class="card-columns">
             @foreach(session('books') as $book)
             @php
-                $route = (Auth::user()->role == 'admin'? 'admin' : 'member') . '/books/'.$book->id.'/';
+            $route = (Auth::user()->role == 'admin'? 'admin' : 'member') . '/books/'.$book->id.'/';
             @endphp
-            
-            <a class="card book-link" href="{{ url($route) }}" >
+
+            <a class="card book-link" href="{{ url($route) }}">
                 <img class="card-img-top" src="{{ asset('img/book.png') }}" alt="book image">
                 <div class="card-body">
                     <p class="card-text"><b>{{$book->book_name}}</b></p>
@@ -48,6 +49,11 @@
             </a>
             @endforeach
         </div>
+        @else
+        <div class="row d-flex align-items-center justify-content-center" style="height: 50vh; width: 100%;">
+            <h1 class="display-2"><b>Books not found</b></h1>
+        </div>
+        @endif
     </div>
 </div>
 @endsection
